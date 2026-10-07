@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Shahy Cosmetics</title>
+</head>
+<body style="margin:0; background-color:#F5E9DD; font-family: Arial,  sans-serif;">
+
+  <!-- Header -->
+  <header style="display:flex; justify-content:space-between; align-items:center; padding:15px 40px; background-color:#C97B85;">
+    <h1 style="color:#F5E9DD; margin:0; font-size:24px;">Shahy Cosmetics</h1>
+    <div style="display:flex; align-items:center; gap:20px;">
+      <nav>
+        <a href="#" style="color:#F5E9DD; margin-left:20px; text-decoration:none;">الرئيسية</a>
+      </nav>
+      <button onclick="toggleCart()" style="background:none; border:1px solid #F5E9DD; color:#F5E9DD; padding:8px 16px; border-radius:18px; cursor:pointer;">
+        🛒 السلة <span id="cart-count" style="background-color:#F5E9DD; color:#C97B85; border-radius:50%; padding:2px 7px; font-size:12px; margin-right:5px;">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Cart Panel -->
+  <div id="cart-panel" style="display:none; position:fixed; top:0; left:0; width:300px; height:100%; background-color:#FFFFFF; box-shadow:2px 0 10px rgba(0,0,0,0.2); z-index:100; padding:20px; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h2 style="color:#C97B85; margin:0;">سلة المشتريات</h2>
+      <span onclick="toggleCart()" style="cursor:pointer; font-size:22px; color:#C97B85;">×</span>
+    </div>
+    <div id="cart-items"></div>
+    <div style="border-top:1px solid #eee; margin-top:15px; padding-top:15px;">
+      <p style="font-weight:bold; color:#C97B85;">الإجمالي: <span id="cart-total">0</span> جنيه</p>
+      <button onclick="checkout()" style="width:100%; padding:12px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:20px; cursor:pointer; font-size:15px;">إتمام الطلب عبر واتساب</button>
+    </div>
+  </div>
+  <!-- Welcome Banner -->
+<div style="width:100%;  overflow:hidden;">
+  <img src="images/banner.jpeg" style="width:100%; height:auto;  display:block;" />
+</div>
+
+  <!-- Logo Hero -->
+  <div style="background-color:#F5E9DD; padding:20px; text-align:center;">
+    <img src="images/logo.png" style="max-width:220px;" />
+  </div>
+
+  <!-- Category Tabs -->
+  <section style="padding:40px 40px 10px 40px; background-color:#FFFFFF;">
+    <h2 style="text-align:center; color:#C97B85; margin-bottom:25px;">تسوقي حسب القسم</h2>
+
+    <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-bottom:35px;">
+
+  <div onclick="showCategory('puresaudi')" class="cat-btn" id="btn-puresaudi" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #C97B85;">
+      <img src="images/قسم pure soudi.jpeg" style="width:100%; height:100%; object-fit:contain" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Pure Saudi</p>
+  </div>
+
+  <div onclick="showCategory('facemasks')" class="cat-btn" id="btn-facemasks" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/banner for masks.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Face Masks</p>
+  </div>
+
+  <div onclick="showCategory('serums')" class="cat-btn" id="btn-serums" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر قسم السيروم.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Serums</p>
+  </div>
+
+  <div onclick="showCategory('haircare')" class="cat-btn" id="btn-haircare" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/banner for hair.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Hair Care</p>
+  </div>
+
+  <div onclick="showCategory('bodycare')" class="cat-btn" id="btn-bodycare" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر قسم body care.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Body Care</p>
+  </div>
+
+  <div onclick="showCategory('skincare')" class="cat-btn" id="btn-skincare" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر العنايه بالبشره.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Skin Care</p>
+  </div>
+
+  <div onclick="showCategory('makeup')" class="cat-btn" id="btn-makeup" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر قسم الميكب.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Makeup & Beauty</p>
+  </div>
+
+  <div onclick="showCategory('lipgloss')" class="cat-btn" id="btn-lipgloss" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر قسم ليب جلوس.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Lip Gloss</p>
+  </div>
+
+  <div onclick="showCategory('Foot care')" class="cat-btn" id="btn-Footcare" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/banner Foot Care.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">Foot Care</p>
+  </div>
+
+  <div onclick="showCategory('soap')" class="cat-btn" id="btn-lipgloss" style="cursor:pointer; width:110px; text-align:center;">
+    <div style="border-radius:50%; overflow:hidden; width:90px; height:90px; margin:0 auto; border:2px solid #D9A0A8;">
+      <img src="images/بانر قسم الصابون.jpeg" style="width:100%; height:100%; object-fit:contain;" />
+    </div>
+    <p style="margin:6px 0 0 0; color:#C97B85; font-size:13px;">soap</p>
+  </div>
+
+</div>
+
+    <!-- ===================== Pure Saudi ===================== -->
+    <div id="puresaudi" class="category-section" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Pure Saudi</span></p>
+
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%;  margin-bottom:10px;">
+  <img src="images/قسم pure soudi.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+  <div style="position:absolute; bottom:0; right:0; left:0; background:rgba(0,0,0,0.35); color:#fff; text-align:center; padding:15px; font-size:20px; font-weight:bold;">Pure Saudi</div>
+</div>
+      <div class="product-card" data-name="سدر" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سدر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سدر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="مشاط" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مشاط.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مشاط</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="حنه" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/حنه.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">حنه</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="نواة تمر" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/نواة تمر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">نواة تمر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ماسكات الوجه ===================== -->
+    <div id="facemasks" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Face Masks</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/banner for masks.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="ماسك الكولاجين" data-price="30" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ماسك الكولاجين.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ماسك الكولاجين</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">30 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ماسك الماتشا" data-price="30" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ماسك الماتشا.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ماسك الماتشا</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">30 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ماسك الفحم" data-price="30" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ماسك الفحم.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ماسك الفحم</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">30 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ماسك النيله الزرقاء" data-price="30" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ماسك النيله الزرقاء.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ماسك النيله الزرقاء</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">30 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== سيرومات ===================== -->
+    <div id="serums" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Serums</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر قسم السيروم.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="سيروم تساقط الشعر" data-price="180" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم تساقط الشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم تساقط الشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">180 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم انبات واطالة الشعر" data-price="180" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم انبات واطالة الشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم انبات واطالة الشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">180 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم فيتامين سي" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم فيتامين سي.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم فيتامين سي</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم شاهي الطبيعي للهالات والتجاعيد" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم شاهي الطبيعي للهالات والتجاعيد.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم شاهي الطبيعي للهالات والتجاعيد</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم بديل الليزر لتقليل نمو شعر الجسم" data-price="120" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم بديل الليزر لتقليل نمو شعر الجسم.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم بديل الليزر لتقليل نمو شعر الجسم</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">120 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم العناية بالأظافر" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم العناية بالأظافر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم العناية بالأظافر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="سيروم الرموش والحواجب" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم الرموش والحواجب.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم الرموش والحواجب</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== العناية بالشعر ===================== -->
+    <div id="haircare" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Hair Care</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/banner for hair.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="هير ميست للشعر" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/هير ميست للشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">هير ميست للشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="كريم تصفيف الشعر" data-price="80" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/كريم تصفيف الشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;"> كريم تصفيف الشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">80 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="كريم تصفيف الشعر" data-price="160" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/سيروم معالجة الهيشان والتقصف.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">سيروم معالجةالهيشان والتقصف</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">160 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="مثبت حواجب جل ومثبت ببيي هير للشعر" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مثبت حواجب جل ومثبت ببيي هير للشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مثبت حواجب جل ومثبت ببيي هير للشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== العناية بالجسم ===================== -->
+    <div id="bodycare" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Body Care</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر قسم body care.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="بيكيني بالم" data-price="120" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بيكيني بالم.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بيكيني بالم</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">120 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ديودرينت" data-price="120" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مزيل عرق رول.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ديودرينت</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">120 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="بادي باتر" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي باتر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي باتر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="اسكراب النيله الزرقاء" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/اسكراب النيله الزرقاء.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">اسكراب النيله الزرقاء</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+                  <div class="product-card" data-name="بادي اسبلاش غَرام" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي اسبلاش غَرام.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي اسبلاش غَرام</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+                  <div class="product-card" data-name="بادي اسبلاش رِقه" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي اسبلاش رِقه.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي اسبلاش رِقه</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+                  <div class="product-card" data-name="بادي اسبلاش burberry her" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي اسبلاش burberry her.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي اسبلاش burberry her</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+                  <div class="product-card" data-name="بادي اسبلاش" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي اسبلاش.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي اسبلاش</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+      <div class="product-card" data-name="دراي اويل" data-price="75" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/دراي اويل.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">دراي اويل</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">75 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="اسكراب الليمون" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/اسكراب الليمون.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">اسكراب الليمون</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="اسكراب الفواكة" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/اسكراب الفواكة.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">اسكراب الفواكة</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="بادي لوشن" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بادي لوشن.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بادي لوشن</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+                  <div class="product-card" data-name="مخمريه" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مخمريه.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مخمريه</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== العناية بالبشرة ===================== -->
+    <div id="skincare" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Skin Care</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر العنايه بالبشره.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="صن بلوك" data-price="170" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صن بلوك.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صن بلوك</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">170 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="تونر شجرة الشاي" data-price="120" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/تونر شجرة الشاي.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">تونر شجرة الشاي</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">120 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="كريم تفتيح البشره" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/كريم تفتيح البشره.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">كريم تفتيح البشره</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="كريم ترطيب البشره" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/كريم ترطيب البشره.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">كريم ترطيب البشره</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="غسول فيتامين سي" data-price="150" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/غسول فيتامين سي.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">غسول فيتامين سي</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">150 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== مكياج وجمال ===================== -->
+    <div id="makeup" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Makeup & Beauty</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر قسم الميكب.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="بديل فاونديشن" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بديل فاونديشن.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بديل فاونديشن/h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="بيبي بينك بلاشر" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/بيبي بينك بلاشر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">بيبي بينك بلاشر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="نود بلاشر" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/نود بلاشر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">نود بلاشر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="هايلايتر كريمي" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/هايلايتر كريمي.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">هايلايتر كريمي</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="هايلايتر بودر" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/هايلايتر بودر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">هايلايتر بودر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="جل حواجب" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/جل حواجب1.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">جل حواجب</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب اويل" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب اويل.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب اويل</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب بالم جار" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب بالم جار.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب بالم جار</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="تنت ليكويد" data-price="40" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/تنت ليكويد.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">تنت ليكويد</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">40 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="تنت كريمي" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/تنت كريمي.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">تنت كريمي</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="لوس بودر" data-price="100" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/لوس باودر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">لوس بودر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">100 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب اسكراب" data-price="40" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب اسكراب.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب اسكراب</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">40 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ليب جلوس ===================== -->
+    <div id="lipgloss" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Lip Gloss</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر قسم ليب جلوس.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="ليب جلوس" data-price="35" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 1.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">35 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب جلوس" data-price="45" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 2.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">45 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب جلوس" data-price="55" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 3.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">55 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب جلوس" data-price="65" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 4.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">65 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب جلوس" data-price="75" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 5.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">75 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="ليب جلوس" data-price="85" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/ليب جلوس 6.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">ليب جلوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">85 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+        <!-- ===================== العناية بالقدم===================== -->
+    <div id="Foot care" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">Foot care</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/banner Foot Care.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="كالس اوف" data-price="120" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/كالس اوف.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">كالس اوف</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">120 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+            <div class="product-card" data-name="مورد قدمين" data-price="85" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مورد قدمين.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مورد قدمين</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">85 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="مرطب قدمين" data-price="95" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/مرطب قدمين.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مرطب قدمين</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">95 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="مجموعة القدم" data-price="300" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/banner Foot Care.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">مجموعة القدم</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">300 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+        <!-- ===================== صابون ===================== -->
+    <div id="soap" class="category-section" style="display:none; gap:20px; flex-wrap:wrap; justify-content:center; padding-bottom:40px;">
+      <p style="color:#999; font-size:13px; width:100%; text-align:center;">الرئيسية / تسوق / <span style="color:#C97B85;">soap</span></p>
+<div style="position:relative; border-radius:20px; overflow:hidden; width:100%; margin-bottom:10px;">
+  <img src="images/بانر قسم الصابون.jpeg" style="width:100%; height:auto; display:block;" />
+</div>
+      <div class="product-card" data-name="صابونه لبان الدكر" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه لبان الدكر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه لبان الدكر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه الجلسرين الشفاف" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه الجلسرين الشفاف.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه الجلسرين الشفاف</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه الجلسرين" data-price="60" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه الجلسرين.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه الجلسرين</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">60 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه السدر للشعر" data-price="60" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه السدر للشعر.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه السدر للشعر</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">60 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه العرقسوس" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه العرقسوس.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه العرقسوس</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه السالسيلك اسيد" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه السالسيلك اسيد.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه السالسيلك اسيد</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه القهوه" data-price="50" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه القهوه.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه القهوه</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">50 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه النيله الزرقا للجسم" data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه النيله الزرقا للجسم.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه النيله الزرقا للجسم</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه النيله الزرقا للبشره" data-price="60" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه النيله الزرقا للبشره.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه النيله الزرقا للبشره</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">60 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه السالسيلك اسيد للجسم " data-price="70" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه السالسيلك اسيد للجسم.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه السالسيلك اسيد للجسم </h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">70 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+
+            <div class="product-card" data-name="صابونه العسل" data-price="60" style="width:220px;">
+        <div style="background-color:#F0EAE2; border-radius:110px 110px 12px 12px; height:220px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+          <img src="images/صابونه العسل.jpeg" style="width:100%; height:100%; object-fit:contain; display:block;" />
+        </div>
+        <div style="padding:15px; text-align:center;">
+          <h3 style="margin:5px 0; color:#C97B85; font-size:16px;">صابونه العسل</h3>
+          <p style="margin:0; font-weight:bold; color:#D9A0A8;">60 جنيه</p>
+          <button onclick="addToCart(this)" style="margin-top:8px; padding:8px 16px; background-color:#C97B85; color:#F5E9DD; border:none; border-radius:15px; cursor:pointer;">أضف للسلة</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer style="background-color:#C97B85; color:#F5E9DD; text-align:center; padding:20px; font-size:14px;">
+    <p style="margin:0;">© 2026 Shahy Cosmetics - جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    // ====== حط رقم الواتساب بتاعك هنا (بصيغة دولية بدون + أو أصفار زيادة) ======
+    const whatsappNumber = "201285360988";
+
+    let cart = [];
+
+    function showCategory(id) {
+      document.querySelectorAll('.category-section').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'flex';
+
+      document.querySelectorAll('.cat-btn').forEach(function(btn) {
+        btn.style.backgroundColor = '#F5E9DD';
+        btn.style.color = '#C97B85';
+      });
+      var activeBtn = document.getElementById('btn-' + id);
+      activeBtn.style.backgroundColor = '#C97B85';
+      activeBtn.style.color = '#F5E9DD';
+    }
+
+    function addToCart(button) {
+      const card = button.closest('.product-card');
+      const name = card.getAttribute('data-name');
+      const price = parseFloat(card.getAttribute('data-price')) || 0;
+
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name: name, price: price, qty: 1 });
+      }
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartCountEl = document.getElementById('cart-count');
+      const cartTotalEl = document.getElementById('cart-total');
+
+      cartItemsEl.innerHTML = '';
+      let total = 0;
+      let count = 0;
+
+      cart.forEach(function(item, index) {
+        total += item.price * item.qty;
+        count += item.qty;
+
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.style.justifyContent = 'space-between';
+        row.style.alignItems = 'center';
+        row.style.marginBottom = '10px';
+        row.style.fontSize = '14px';
+        row.innerHTML = `
+          <span style="color:#C97B85;">${item.name} (×${item.qty})</span>
+          <span style="color:#D9A0A8; font-weight:bold;">${item.price * item.qty} ج
+            <span onclick="removeFromCart(${index})" style="color:red; cursor:pointer; margin-right:8px;">×</span>
+          </span>
+        `;
+        cartItemsEl.appendChild(row);
+      });
+
+      cartCountEl.textContent = count;
+      cartTotalEl.textContent = total;
+    }
+
+    function toggleCart() {
+      const panel = document.getElementById('cart-panel');
+      panel.style.display = (panel.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert('السلة فارغة، اضيفي منتجات الأول');
+        return;
+      }
+      let message = "مرحبًا، عايزة أطلب من Shahy Cosmetics:%0A%0A";
+      let total = 0;
+      cart.forEach(function(item) {
+        message += `- ${item.name} × ${item.qty} = ${item.price * item.qty} جنيه%0A`;
+        total += item.price * item.qty;
+      });
+      message += `%0Aالإجمالي: ${total} جنيه`;
+
+      window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
